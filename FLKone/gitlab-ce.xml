@@ -10,10 +10,10 @@
     [b]/var/opt/gitlab[/b] : Application data.[br]
 	[b]/etc/gitlab[/b] : Configuration.[br]
 
-	Default access username [b]root[/b] and password [b]5iveL!fe[/b]
+    [b][span style=\'color: #E80000;\']WebUI access[/span][/b] username [b]root[/b] and password [b]5iveL!fe[/b]
   </Description>
-  <Registry>https://registry.hub.docker.com/u/sytse/gitlab-ce/</Registry>
-  <Repository>sytse/gitlab-ce:7.10.1</Repository>
+  <Registry>https://registry.hub.docker.com/u/sameersbn/gitlab/</Registry>
+  <Repository>sameersbn/gitlab:7.11.4</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Environment/>
