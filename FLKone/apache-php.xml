@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Beta>False</Beta>
+  <Category>Network:Management</Category>
+  <Name>Apache PHP</Name>
+  <Description>
+    [h3]Apache + PHP[/h3] Git server and web UI.[br][br]
+    [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
+    [b]/var/log/gitlab[/b] : Logs.[br]
+    [b]/var/opt/gitlab[/b] : Application data.[br]
+	[b]/etc/gitlab[/b] : Configuration.[br]
+
+    [b][span style=\'color: #E80000;\']WebUI access[/span][/b] username [b]root[/b] and password [b]5iveL!fe[/b]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/flkone/apache-php/</Registry>
+  <Repository>flkone/apache-php</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>8181</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/apache-php/logs</HostDir>
+      <ContainerDir>/app</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version></Version>
+  <WebUI>http://[IP]:[PORT:8181]/</WebUI>
+  <Banner>http://i.imgur.com/eddJlVg.png</Banner>
+  <Icon>http://i.imgur.com/KKoQMo6.png</Icon>
+</Container>
