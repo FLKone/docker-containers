@@ -22,8 +22,8 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 # Install VLC
 RUN \
   add-apt-repository ppa:mc3man/trusty-media && \
-  apt-get update && \
-  apt-get dist-upgrade && \
+  apt-get -y update && \
+  apt-get -y dist-upgrade && \
   apt-get install -y vlc && \
   apt-get install -y vlc-plugin-libde265 && \
   apt-get install -y wget && \
@@ -47,6 +47,8 @@ RUN chmod a+x /etc/rc.local && \
 	chown -R nobody:users /config && \
 	mkdir /conversionPath && \
 	chown -R nobody:users /conversionPath && \
+    mkdir /applicationData && \
+	chown -R nobody:users /applicationData && \
 	mkdir /videos && \
 	chown -R nobody:users /videos
 
@@ -57,6 +59,6 @@ RUN chown nobody:users /etc/service/airvideohd/run && \
 
 EXPOSE 45633
 
-VOLUME ["/config", "/conversionPath", "/videos"]
+VOLUME ["/config", "/conversionPath", "/applicationData", "/videos"]
 
 ### END
