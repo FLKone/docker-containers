@@ -21,8 +21,9 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # Install VLC
 RUN \
-  add-apt-repository ppa:mc3man/trusty-media
+  add-apt-repository ppa:mc3man/trusty-media && \
   apt-get update && \
+  apt-get dist-upgrade && \
   apt-get install -y vlc && \
   apt-get install -y vlc-plugin-libde265 && \
   apt-get install -y wget && \
