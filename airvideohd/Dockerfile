@@ -1,6 +1,6 @@
 ### Dockerfile for airvideohd
-FROM phusion/baseimage:0.9.16
-MAINTAINER flkone <apps@flkone.com>
+FROM ubuntu:20.04
+MAINTAINER FLK <git@flk.io>
 
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
