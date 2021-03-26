@@ -34,12 +34,15 @@ RUN tar jxf /airvideoserverhd-2.2.3.tar.bz2
 
 # Copy default
 COPY server.properties /server.properties.new
+COPY airvideohd.sh /airvideohd.sh
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
 RUN chmod a+x /etc/rc.local && \
 	mkdir -p /config/logs && \
 	cp -n /server.properties.new /config/server.properties && \
+        cp -n /airvideohd.sh /config/airvideohd.sh && \
+        chmod a+x /config/airvideohd.sh && \
 	chown -R nobody:users /config && \
 	mkdir /conversionPath && \
 	chown -R nobody:users /conversionPath && \
@@ -47,11 +50,6 @@ RUN chmod a+x /etc/rc.local && \
 	chown -R nobody:users /applicationData && \
 	mkdir /videos && \
 	chown -R nobody:users /videos
-
-RUN mkdir /etc/service/airvideohd
-ADD airvideohd.sh /etc/service/airvideohd/run
-RUN chown nobody:users /etc/service/airvideohd/run && \
-    chmod a+x /etc/service/airvideohd/run
 
 EXPOSE 45633
 
