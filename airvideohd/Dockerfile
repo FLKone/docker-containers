@@ -1,5 +1,5 @@
 ### Dockerfile for airvideohd
-FROM ubuntu:20.04
+FROM phusion/baseimage:bionic-1.0.0
 MAINTAINER FLK <git@flk.io>
 
 ENV HOME /root
@@ -25,7 +25,8 @@ RUN \
   apt-get -y dist-upgrade && \
   apt-get install -y vlc && \
   apt-get install -y wget && \
-  apt-get clean -y
+  apt-get clean -y && \
+  rm -rf /var/lib/apt/lists/*
 
 # Download AirVideoHD
 RUN wget -O /airvideoserverhd-2.2.3.tar.bz2 "https://s3.amazonaws.com/AirVideoHD/Download/AirVideoServerHD-2.2.3.tar.bz2"
@@ -34,15 +35,12 @@ RUN tar jxf /airvideoserverhd-2.2.3.tar.bz2
 
 # Copy default
 COPY server.properties /server.properties.new
-COPY airvideohd.sh /airvideohd.sh
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
 RUN chmod a+x /etc/rc.local && \
 	mkdir -p /config/logs && \
 	cp -n /server.properties.new /config/server.properties && \
-        cp -n /airvideohd.sh /config/airvideohd.sh && \
-        chmod a+x /config/airvideohd.sh && \
 	chown -R nobody:users /config && \
 	mkdir /conversionPath && \
 	chown -R nobody:users /conversionPath && \
@@ -50,6 +48,11 @@ RUN chmod a+x /etc/rc.local && \
 	chown -R nobody:users /applicationData && \
 	mkdir /videos && \
 	chown -R nobody:users /videos
+
+RUN mkdir /etc/service/airvideohd
+ADD airvideohd.sh /etc/service/airvideohd/run
+RUN chown nobody:users /etc/service/airvideohd/run && \
+    chmod a+x /etc/service/airvideohd/run
 
 EXPOSE 45633
 
