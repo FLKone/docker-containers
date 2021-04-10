@@ -1,5 +1,5 @@
 ### Dockerfile for airvideohd
-FROM phusion/baseimage:bionic-1.0.0
+FROM phusion/baseimage:0.9.16
 MAINTAINER FLK <git@flk.io>
 
 ENV HOME /root
